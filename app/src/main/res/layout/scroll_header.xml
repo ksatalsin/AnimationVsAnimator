@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/scroll_header"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:gravity="center_horizontal"
+        android:text="Do you like Animator?\n I like Animator!"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/scroll_bla_text_size"
+        android:textStyle="bold"/>
+
+    <ImageView
+        android:layout_width="@dimen/scroll_image_size"
+        android:layout_height="@dimen/scroll_image_size"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_like"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:gravity="center_horizontal"
+        android:text="Scroll likes!!!\nClick on the items!!!\nClick on the Show\\hide button!"
+        android:textSize="@dimen/scroll_bla_text_size"/>
+
+    <View
+        style="@style/HorizontalDivider"/>
+
+    <TextView
+        android:id="@+id/scroll_header_articul"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/scroll_articul_margin"
+        android:gravity="center_horizontal"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/scroll_articul_text_size"/>
+
+</LinearLayout>

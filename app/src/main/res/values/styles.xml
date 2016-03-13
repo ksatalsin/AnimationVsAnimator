@@ -14,4 +14,17 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
+    <style name="HorizontalDivider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/divider_size</item>
+        <item name="android:background">#b9b9b9</item>
+    </style>
+
+    <style name="VerticalDivider">
+        <item name="android:layout_width">@dimen/divider_size</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">#b9b9b9</item>
+    </style>
+
+
 </resources>

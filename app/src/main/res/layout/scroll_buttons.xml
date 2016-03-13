@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <View
+        style="@style/HorizontalDivider"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/scroll_button_1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Useless button"
+            android:textColor="@android:color/black"/>
+
+        <View
+            style="@style/VerticalDivider"/>
+
+        <TextView
+            android:id="@+id/scroll_button_2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Show/hide"
+            android:textColor="@android:color/black"/>
+
+        <View
+            style="@style/VerticalDivider"/>
+
+        <TextView
+            android:id="@+id/scroll_button_3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Another useless button"
+            android:textColor="@android:color/black"/>
+    </LinearLayout>
+
+    <View
+        style="@style/HorizontalDivider"/>
+</merge>

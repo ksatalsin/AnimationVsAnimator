@@ -1,0 +1,41 @@
+<android.support.v4.widget.NestedScrollView
+    android:id="@+id/scroll_view"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="88dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/scroll_header"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/scroll_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/scroll_recycler_hide_height"/>
+
+        <com.princeparadoxes.animationvsanimator.scroll.ScrollButtons
+            android:id="@+id/scroll_footer_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/scroll_buttons_height"/>
+
+        <TextView
+            android:id="@+id/scroll_footer_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/bla_bla_text"
+            android:textColor="#202020"
+            android:textSize="14sp"/>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

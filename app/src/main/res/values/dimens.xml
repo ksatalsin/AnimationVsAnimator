@@ -3,4 +3,18 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
+    <dimen name="divider_size">1dp</dimen>
+
+
+    <dimen name="scroll_recycler_hide_height">64dp</dimen>
+    <dimen name="scroll_recycler_show_height">192dp</dimen>
+    <dimen name="scroll_item_height_width">64dp</dimen>
+    <dimen name="scroll_buttons_height">46dp</dimen>
+    <dimen name="scroll_articul_margin">16dp</dimen>
+    <dimen name="scroll_articul_text_size">14sp</dimen>
+    <dimen name="scroll_articul_text_height">16sp</dimen>
+    <dimen name="scroll_image_size">168dp</dimen>
+    <dimen name="scroll_tags_left_right_margins">16dp</dimen>
+    <dimen name="scroll_bla_text_size">18sp</dimen>
 </resources>

@@ -1,4 +1,4 @@
-package com.princeparadoxes.animationvsanimator;
+package com.princeparadoxes.animationvsanimator.like;
 
 import android.support.annotation.DrawableRes;
 import android.view.View;
@@ -13,7 +13,7 @@ import com.princeparadoxes.animationvsanimator.misc.OnEndAnimationListener;
 /**
  * Created by Danil on 17.11.2015.
  */
-public class LikeAnimationV2 {
+public class AnimationSetOffsetExample {
     public static final long SHOW_DURATION = 200;
     public static final long TO_NORMAL_DURATION = 100;
     public static final long HIDE_DURATION = 200;
@@ -24,9 +24,11 @@ public class LikeAnimationV2 {
         imageView.setImageResource(icon);
         imageView.setVisibility(View.VISIBLE);
         AnimationSet animationSet = new AnimationSet(false);
-        animationSet.addAnimation(showAnimationSet());
-        animationSet.addAnimation(toNormalAnimationSet());
-        animationSet.addAnimation(hideAnimationSet());
+        animationSet.addAnimation(showAlphaAnimation());
+        animationSet.addAnimation(showScaleAnimation());
+        animationSet.addAnimation(toNormalScaleAnimation());
+        animationSet.addAnimation(hideAlphaAnimation());
+        animationSet.addAnimation(hideScaleAnimation());
         animationSet.setAnimationListener(new OnEndAnimationListener() {
             @Override
             public void onAnimationEnd(Animation animation) {
@@ -36,43 +38,46 @@ public class LikeAnimationV2 {
         imageView.startAnimation(animationSet);
     }
 
-    private static AnimationSet showAnimationSet() {
+    private static Animation showAlphaAnimation() {
         AlphaAnimation showAlphaAnimation = new AlphaAnimation(0.0f, 1.0f);
+        showAlphaAnimation.setDuration(SHOW_DURATION);
+        return showAlphaAnimation;
+    }
+
+    private static Animation showScaleAnimation() {
         ScaleAnimation showScaleAnimation = new ScaleAnimation(
                 0.2f, 1.4f, 0.2f, 1.4f,
                 Animation.RELATIVE_TO_SELF, 0.5f,
                 Animation.RELATIVE_TO_SELF, 0.5f);
-        AnimationSet set = new AnimationSet(false);
-        set.addAnimation(showAlphaAnimation);
-        set.addAnimation(showScaleAnimation);
-        set.setDuration(SHOW_DURATION);
-        return set;
+        showScaleAnimation.setDuration(SHOW_DURATION);
+        return showScaleAnimation;
     }
 
-    private static AnimationSet hideAnimationSet() {
-        AlphaAnimation hideAlphaAnimation = new AlphaAnimation(1.0f, 0.0f);
-        ScaleAnimation hideScaleAnimation = new ScaleAnimation(
-                1.0f, 0.2f, 1.0f, 0.2f,
-                Animation.RELATIVE_TO_SELF, 0.5f,
-                Animation.RELATIVE_TO_SELF, 0.5f);
-        AnimationSet set = new AnimationSet(false);
-        set.setDuration(HIDE_DURATION);
-        set.addAnimation(hideAlphaAnimation);
-        set.addAnimation(hideScaleAnimation);
-        set.setStartOffset(SHOW_DURATION + TO_NORMAL_DURATION + HIDE_DELAY);
-        return set;
-    }
-
-
-    private static AnimationSet toNormalAnimationSet() {
+    private static Animation toNormalScaleAnimation() {
         ScaleAnimation toNormalScaleAnimation = new ScaleAnimation(
                 1.4f, 1.0f, 1.4f, 1.0f,
                 Animation.RELATIVE_TO_SELF, 0.5f,
                 Animation.RELATIVE_TO_SELF, 0.5f);
-        AnimationSet set = new AnimationSet(false);
-        set.addAnimation(toNormalScaleAnimation);
-        set.setDuration(TO_NORMAL_DURATION);
-        set.setStartOffset(SHOW_DURATION);
-        return set;
+        toNormalScaleAnimation.setDuration(TO_NORMAL_DURATION);
+        toNormalScaleAnimation.setStartOffset(SHOW_DURATION);
+        return toNormalScaleAnimation;
     }
+
+    private static Animation hideAlphaAnimation() {
+        AlphaAnimation hideAlphaAnimation = new AlphaAnimation(1.0f, 0.0f);
+        hideAlphaAnimation.setDuration(HIDE_DURATION);
+        hideAlphaAnimation.setStartOffset(SHOW_DURATION + TO_NORMAL_DURATION + HIDE_DELAY);
+        return hideAlphaAnimation;
+    }
+
+    private static Animation hideScaleAnimation() {
+        ScaleAnimation hideScaleAnimation = new ScaleAnimation(
+                1.0f, 0.2f, 1.0f, 0.2f,
+                Animation.RELATIVE_TO_SELF, 0.5f,
+                Animation.RELATIVE_TO_SELF, 0.5f);
+        hideScaleAnimation.setDuration(HIDE_DURATION);
+        hideScaleAnimation.setStartOffset(SHOW_DURATION + TO_NORMAL_DURATION + HIDE_DELAY);
+        return hideScaleAnimation;
+    }
+
 }
