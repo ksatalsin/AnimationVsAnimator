@@ -12,7 +12,7 @@ import com.princeparadoxes.animationvsanimator.misc.LayoutParamsUtils;
  * Created by Danil on 02.03.2016.
  */
 public class AnimatorUtils {
-    private static final int DEFAULT_DURATION = 200;
+    private static final int DEFAULT_DURATION = 300;
 
     public static Animator heightAnimator(int start, int end, View view) {
         return heightAnimator(start, end, view, DEFAULT_DURATION);
@@ -30,6 +30,23 @@ public class AnimatorUtils {
         heightAnimator.setDuration(duration);
         heightAnimator.addListener(getLayerTypeListener(view));
         return heightAnimator;
+    }
+
+    public static Animator translationYAnimator(int end, final View view) {
+        return translationYAnimator(view.getTranslationY(), end, view, DEFAULT_DURATION);
+    }
+
+    public static Animator translationYAnimator(final float start, int end, final View view, int duration) {
+        ObjectAnimator animator = ObjectAnimator.ofFloat(view, "translationY", end);
+        animator.setDuration(duration);
+        animator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                view.setTranslationY(start);
+            }
+        });
+        return animator;
     }
 
     public static Animator scrollAnimator(int start, int end, View view) {
@@ -60,7 +77,7 @@ public class AnimatorUtils {
         return alphaAnimator;
     }
 
-    private static AnimatorListenerAdapter getLayerTypeListener(final View view){
+    private static AnimatorListenerAdapter getLayerTypeListener(final View view) {
         return new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animation) {

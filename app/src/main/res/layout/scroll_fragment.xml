@@ -22,16 +22,15 @@
         <com.princeparadoxes.animationvsanimator.scroll.ScrollButtons
             android:id="@+id/scroll_footer_buttons"
             android:layout_width="match_parent"
+            android:background="@android:color/white"
             android:layout_height="@dimen/scroll_buttons_height"/>
 
         <TextView
             android:id="@+id/scroll_footer_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="20dp"
+            android:padding="16dp"
+            android:background="@android:color/white"
             android:text="@string/bla_bla_text"
             android:textColor="#202020"
             android:textSize="14sp"/>

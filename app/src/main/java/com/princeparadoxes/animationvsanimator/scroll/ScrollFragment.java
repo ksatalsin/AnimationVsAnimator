@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.danil.recyclerbindableadapter.library.SimpleBindableAdapter;
 import com.danil.recyclerbindableadapter.library.view.BindableViewHolder;
 import com.princeparadoxes.animationvsanimator.R;
+import com.princeparadoxes.animationvsanimator.misc.LayoutParamsUtils;
 
 import java.util.ArrayList;
 
@@ -94,7 +95,7 @@ public class ScrollFragment extends Fragment implements BindableViewHolder.Actio
 
     @Override
     public void OnItemClickListener(int position, Object Item) {
-        articul.setText(String.valueOf(position));
+        articul.setText("Position of item: " + String.valueOf(position));
         if (articul.getHeight() == 0) {
             AnimatorUtils.heightAnimator(0, articulHeight, articul).start();
         }
@@ -107,43 +108,39 @@ public class ScrollFragment extends Fragment implements BindableViewHolder.Actio
 
     @Override
     public void onSecondButtonClick() {
-        boolean isGrid = recyclerView.getLayoutManager() instanceof GridLayoutManager;
-        AnimatorSet showHideSet = new AnimatorSet();
-        if (isGrid) {
-            showHideSet.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    super.onAnimationEnd(animation);
-                    recyclerView.setLayoutManager(linearLayoutManager);
-                    AnimatorUtils.alphaAnimator(0, 1, recyclerView).start();
-                }
-            });
-            footerText.setVisibility(View.VISIBLE);
-        } else {
-            showHideSet.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    super.onAnimationEnd(animation);
-                    recyclerView.setLayoutManager(gridLayoutManager);
-                    AnimatorUtils.alphaAnimator(0, 1, recyclerView).start();
-                    footerText.setVisibility(View.GONE);
-                }
-            });
-        }
-        //height animator data
-        int startHeight = isGrid ? showRecyclerHeight : hideRecyclerHeight;
-        int endHeight = isGrid ? hideRecyclerHeight : showRecyclerHeight;
+        final boolean isGrid = recyclerView.getLayoutManager() instanceof GridLayoutManager;
+
+        //translateY animator data
+        int translationY = isGrid ? hideRecyclerHeight - showRecyclerHeight
+                : showRecyclerHeight - hideRecyclerHeight;
 
         //scroll animator data
         int startScroll = scrollView.computeVerticalScrollOffset();
         int contentHeight = header.getHeight() + (isGrid ? hideRecyclerHeight : showRecyclerHeight);
         int scrollViewHeight = (scrollView.getHeight() - buttonsHeight);
         int endScroll = contentHeight - scrollViewHeight;
+        
+        AnimatorSet showHideSet = new AnimatorSet();
+        showHideSet.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                recyclerView.setLayoutManager(isGrid ? linearLayoutManager : gridLayoutManager);
+                AnimatorUtils.alphaAnimator(0, 1, recyclerView).start();
+                LayoutParamsUtils.setHeight(recyclerView, isGrid ? hideRecyclerHeight : showRecyclerHeight);
+                if (!isGrid)
+                    footerText.setVisibility(View.GONE);
+            }
+        });
+        if (isGrid)
+            footerText.setVisibility(View.VISIBLE);
 
-        showHideSet
-                .play(AnimatorUtils.heightAnimator(startHeight, endHeight, recyclerView))
-                .with(AnimatorUtils.scrollAnimator(startScroll, endScroll, scrollView))
-                .with(AnimatorUtils.alphaAnimator(1, 0, recyclerView));
+        showHideSet.playTogether(
+                AnimatorUtils.translationYAnimator(translationY, footerButtons),
+                AnimatorUtils.translationYAnimator(translationY, footerText),
+                AnimatorUtils.scrollAnimator(startScroll, endScroll, scrollView),
+                AnimatorUtils.alphaAnimator(1, 0, recyclerView)
+        );
         showHideSet.start();
     }
 
