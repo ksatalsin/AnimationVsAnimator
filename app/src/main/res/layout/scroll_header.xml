@@ -38,7 +38,7 @@
     <TextView
         android:id="@+id/scroll_header_articul"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/scroll_articul_text_height"
         android:layout_margin="@dimen/scroll_articul_margin"
         android:gravity="center_horizontal"
         android:textColor="@android:color/black"

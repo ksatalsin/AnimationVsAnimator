@@ -51,8 +51,6 @@ public class ScrollFragment extends Fragment implements BindableViewHolder.Actio
     int hideRecyclerHeight;
     @BindDimen(R.dimen.scroll_buttons_height)
     int buttonsHeight;
-    @BindDimen(R.dimen.scroll_articul_text_height)
-    int articulHeight;
     private SimpleBindableAdapter<Integer> adapter;
 
     public ScrollFragment() {
@@ -73,11 +71,11 @@ public class ScrollFragment extends Fragment implements BindableViewHolder.Actio
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.scroll_fragment, container, false);
         ButterKnife.bind(this, view);
-        showProducts();
+        showItems();
         return view;
     }
 
-    public void showProducts() {
+    public void showItems() {
         recyclerView.setAdapter(adapter);
         if (recyclerView.getLayoutManager() == null) {
             recyclerView.setLayoutManager(linearLayoutManager);
@@ -95,10 +93,8 @@ public class ScrollFragment extends Fragment implements BindableViewHolder.Actio
 
     @Override
     public void OnItemClickListener(int position, Object Item) {
-        articul.setText("Position of item: " + String.valueOf(position));
-        if (articul.getHeight() == 0) {
-            AnimatorUtils.heightAnimator(0, articulHeight, articul).start();
-        }
+        articul.setText(String.format(getContext().getString(R.string.scroll_fragment_position),
+                String.valueOf(position)));
     }
 
     @Override

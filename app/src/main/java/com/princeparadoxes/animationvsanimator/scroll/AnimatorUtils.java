@@ -14,24 +14,6 @@ import com.princeparadoxes.animationvsanimator.misc.LayoutParamsUtils;
 public class AnimatorUtils {
     private static final int DEFAULT_DURATION = 300;
 
-    public static Animator heightAnimator(int start, int end, View view) {
-        return heightAnimator(start, end, view, DEFAULT_DURATION);
-    }
-
-    public static Animator heightAnimator(int start, int end, final View view, int duration) {
-        ValueAnimator heightAnimator = ValueAnimator.ofInt(start, end);
-        heightAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                LayoutParamsUtils.setHeight(view, valueAnimator.getAnimatedValue());
-
-            }
-        });
-        heightAnimator.setDuration(duration);
-        heightAnimator.addListener(getLayerTypeListener(view));
-        return heightAnimator;
-    }
-
     public static Animator translationYAnimator(int end, final View view) {
         return translationYAnimator(view.getTranslationY(), end, view, DEFAULT_DURATION);
     }
