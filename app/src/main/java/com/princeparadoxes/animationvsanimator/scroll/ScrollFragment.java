@@ -122,7 +122,7 @@ public class ScrollFragment extends Fragment implements BindableViewHolder.Actio
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
                 recyclerView.setLayoutManager(isGrid ? linearLayoutManager : gridLayoutManager);
-                AnimatorUtils.alphaAnimator(0, 1, recyclerView).start();
+                ScrollAnimatorUtils.alphaAnimator(0, 1, recyclerView).start();
                 LayoutParamsUtils.setHeight(recyclerView, isGrid ? hideRecyclerHeight : showRecyclerHeight);
                 if (!isGrid)
                     footerText.setVisibility(View.GONE);
@@ -132,10 +132,10 @@ public class ScrollFragment extends Fragment implements BindableViewHolder.Actio
             footerText.setVisibility(View.VISIBLE);
 
         showHideSet.playTogether(
-                AnimatorUtils.translationYAnimator(translationY, footerButtons),
-                AnimatorUtils.translationYAnimator(translationY, footerText),
-                AnimatorUtils.scrollAnimator(startScroll, endScroll, scrollView),
-                AnimatorUtils.alphaAnimator(1, 0, recyclerView)
+                ScrollAnimatorUtils.translationYAnimator(translationY, footerButtons),
+                ScrollAnimatorUtils.translationYAnimator(translationY, footerText),
+                ScrollAnimatorUtils.scrollAnimator(startScroll, endScroll, scrollView),
+                ScrollAnimatorUtils.alphaAnimator(1, 0, recyclerView)
         );
         showHideSet.start();
     }
